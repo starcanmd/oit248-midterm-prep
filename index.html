@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OIT 248 Midterm Practice</title>
+<meta name="description" content="Practice questions, concept cards and recall drills for the OIT 248 midterm (Monte Carlo simulation and linear optimization).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <span class="brand-mark">In [248]:</span>
+    <span class="brand-name">OIT 248 midterm practice</span>
+  </div>
+  <nav class="modes" role="tablist" aria-label="Mode">
+    <button class="mode is-on" data-mode="practice" role="tab">Practice</button>
+    <button class="mode" data-mode="recall" role="tab">Recall</button>
+    <button class="mode" data-mode="exam" role="tab">Mock exam</button>
+    <button class="mode" data-mode="concepts" role="tab">Concepts</button>
+  </nav>
+  <div class="top-right">
+    <span class="score" id="score">0 done</span>
+    <button class="ghost" id="reset" title="Clear saved progress">Reset</button>
+  </div>
+</header>
+
+<main class="layout">
+  <aside class="side" id="side">
+    <div class="side-head">Topics</div>
+    <div id="topicList"></div>
+    <div class="side-head">Question type</div>
+    <div id="typeList"></div>
+    <div class="side-foot">
+      <p>Progress is saved in this browser only.</p>
+    </div>
+  </aside>
+
+  <section class="stage" id="stage"></section>
+</main>
+
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer-inner">
+    <button class="drawer-close" id="drawerClose" aria-label="Close">×</button>
+    <div id="drawerBody"></div>
+  </div>
+</div>
+<div class="scrim" id="scrim"></div>
+
+<script src="data.js"></script>
+<script src="questions.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
