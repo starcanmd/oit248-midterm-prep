@@ -260,6 +260,29 @@
     $("#stage").innerHTML = groups.map(([a, title]) => `<div class="group-title">${title}</div>` + CONCEPTS.filter(c => c.area === a).map(conceptHtml).join("")).join("");
   }
 
+  // ---------- exam code playbook ----------
+  function renderPlaybook() {
+    const stage = $("#stage");
+    stage.innerHTML = `<div class="box-expect"><h3 style="margin:0 0 6px">What to expect</h3>${EXPECT}</div>` +
+      PLAYBOOK.map(pb => {
+        const c = conceptById[pb.concept];
+        return `<div class="cell" style="grid-template-columns:76px 1fr">
+          <div class="gutter in">In [&nbsp;]:</div>
+          <div class="body">
+            <div class="tags">${areaTag(pb.area)}</div>
+            <h3 style="margin:0 0 4px;font-size:18px">${h(pb.title)}</h3>
+            <p class="hint" style="margin:0 0 8px;font-size:14px;color:var(--ink-2)">${h(pb.when)}</p>
+            ${codeBlock(pb.code)}
+            <p style="margin:6px 0 8px">${h(pb.notes)}</p>
+            <div class="actions"><button class="btn secondary copy">Copy code</button>${c ? `<button class="btn secondary concept" data-c="${c.id}">Concept: ${h(c.title)}</button>` : ""}</div>
+          </div></div>`;
+      }).join("");
+    stage.querySelectorAll(".cell").forEach((cell, i) => {
+      $(".copy", cell).onclick = () => { navigator.clipboard.writeText(PLAYBOOK[i].code).then(() => { $(".copy", cell).textContent = "Copied"; }); };
+      const b = $(".concept", cell); if (b) b.onclick = () => openConcept(b.dataset.c);
+    });
+  }
+
   // ---------- drawer ----------
   function openConcept(id) {
     const c = conceptById[id]; if (!c) return;
@@ -274,7 +297,8 @@
     renderSide(); updateScore();
     document.querySelectorAll(".mode").forEach(b => b.classList.toggle("is-on", b.dataset.mode === state.mode));
     $("#side").style.display = (state.mode === "practice") ? "" : "none";
-    ({ practice: renderPractice, recall: renderRecall, exam: renderExam, concepts: renderConcepts })[state.mode]();
+    document.querySelector(".layout").classList.toggle("no-side", state.mode !== "practice");
+    ({ practice: renderPractice, recall: renderRecall, exam: renderExam, concepts: renderConcepts, playbook: renderPlaybook })[state.mode]();
     window.scrollTo({ top: 0 });
   }
   document.querySelectorAll(".mode").forEach(b => b.onclick = () => { state.mode = b.dataset.mode; render(); });

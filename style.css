@@ -169,3 +169,9 @@ textarea.answer { width: 100%; min-height: 110px; font-family: var(--mono); font
   .modes { margin-left: 0; order: 3; width: 100%; overflow-x: auto; }
   .brand-name { font-size: 15px; }
 }
+
+.box-expect { background: var(--warn-soft); border-left: 3px solid var(--warn); border-radius: 0 var(--radius) var(--radius) 0; padding: 12px 16px; margin-bottom: 18px; }
+.box-expect p { margin: 0 0 8px; }
+.box-expect p:last-child { margin-bottom: 0; }
+.layout.no-side { grid-template-columns: 1fr; }
+.layout.no-side .stage { margin: 0 auto; }
