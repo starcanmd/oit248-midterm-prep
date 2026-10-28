@@ -347,7 +347,7 @@ Demand_FF = np.maximum(0, np.round(rng.normal(80, 28, 10_000))).astype(int)`,
     concept: "py-random"
   },
   {
-    id: "mc07", topic: "mc-basics", area: "sim", type: "mc", source: "BlueSky Q2",
+    id: "mc07", topic: "mc-basics", area: "sim", type: "mc", source: "Muse Q1",
     prompt: `<p>Running <code>draw_launches(10_000, seed=2026)</code> twice gives:</p>`,
     choices: [`Different launches each time`, `Identical launches`, `Identical launches only on the same computer`, `Identical means but different rows`],
     answer: 1,
@@ -975,7 +975,7 @@ plan.setObjective(material_cost, gp.GRB.MAXIMIZE)`,
     concept: "lp-gurobi"
   },
   {
-    id: "lp41", topic: "lp-gurobi", area: "opt", type: "output", source: "Oro Verde small model",
+    id: "lp41", topic: "lp-gurobi", area: "opt", type: "output", source: "Oro Verde small model, variant (water 2,700)",
     prompt: `<p>Read the model. In words, what does it minimize and what are its constraints? If the solution is Maple 0, Elm 40, Spruce 20 with cost $440, which constraints are binding?</p>`,
     code: `x = model.addVars(tree_types, lb=0, name="x")          # Maple 10.0, Elm 6.5, Spruce 9.0 per tree
 model.setObjective(gp.quicksum(data.loc[t, "Cost"] * x[t] for t in tree_types), gp.GRB.MINIMIZE)
